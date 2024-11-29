@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -10,11 +9,9 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class SendWelcomeEmail implements ShouldQueue
+class Deploy implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    public $tries = 1;
- 
 
     /**
      * Create a new job instance.
@@ -33,13 +30,6 @@ class SendWelcomeEmail implements ShouldQueue
      */
     public function handle()
     {
-        sleep(3);
-        info('Hello');
+        info('deployed');
     }
-
-    public function failed($e)
-    {
-        info('failed');
-    }
- 
- }
+}

@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Jobs;
-
-use Exception;
+use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -10,11 +9,9 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class SendWelcomeEmail implements ShouldQueue
+class PullRepo implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    public $tries = 1;
- 
+    use Batchable, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Create a new job instance.
@@ -33,13 +30,6 @@ class SendWelcomeEmail implements ShouldQueue
      */
     public function handle()
     {
-        sleep(3);
-        info('Hello');
+        info('Repo pulled');
     }
-
-    public function failed($e)
-    {
-        info('failed');
-    }
- 
- }
+}
