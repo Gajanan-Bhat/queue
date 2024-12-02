@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Bus;
+use Illuminate\Support\Facades\DB;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +17,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    App\Jobs\SendWelcomeEmail::dispatch();
-    $batch = [
-            new \App\Jobs\PullRepo('laracasts/project1'),
-            new \App\Jobs\PullRepo('laracasts/project2'),
-            new \App\Jobs\PullRepo('laracasts/project3'),
-        
-    ];
-    \Illuminate\Support\Facades\Bus::batch($batch)->dispatch();
-    return view('welcome');
+       \App\Jobs\TestJob::dispatch('THIS_IS_THE_MESSAGE');
+       return view('welcome');
 });

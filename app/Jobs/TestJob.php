@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Jobs;
-use Illuminate\Bus\Batchable;
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -9,9 +9,9 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class PullRepo implements ShouldQueue
+class TestJob implements ShouldQueue
 {
-    use Batchable, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Create a new job instance.
@@ -30,8 +30,6 @@ class PullRepo implements ShouldQueue
      */
     public function handle()
     {
-        if($this->batch()->cancelled()){
-            return;
-        }
+        //
     }
 }
