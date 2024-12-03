@@ -22,6 +22,7 @@ class Deploy implements ShouldQueue, ShouldBeUnique
 
     public $container;
     public $site;
+    public $latestCommitHash;
 
 
     /**
@@ -29,9 +30,10 @@ class Deploy implements ShouldQueue, ShouldBeUnique
      *
      * @return void
      */
-    public function __construct(Site $site, $latestCommitHash)
+    public function __construct($site, $latestCommitHash)
     {
         $this->site = $site;
+        $this->latestCommitHash;
     }
 
     /**
@@ -41,6 +43,10 @@ class Deploy implements ShouldQueue, ShouldBeUnique
      */
     public function handle()
     {   
-                
+         app()->make('deployer')
+            ->deploy(
+                $this->latestCommitHash
+            );
+         }       
     } 
-}
+
